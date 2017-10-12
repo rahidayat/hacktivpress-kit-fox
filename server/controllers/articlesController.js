@@ -24,6 +24,7 @@ var getOne = (req, res) => {
   .then(article => res.send(article))
   .catch(err => res.status(500).send({msg: 'error proses'}))
 }
+
 var update = (req, res) => {
   Article.findById(req.params.id)
   .then(article => {
@@ -37,9 +38,23 @@ var update = (req, res) => {
   .catch(err => res.status(500).send({msg: 'error proses'}))
 }
 
+var deleteArticle = (req, res) => {
+  Article.findById(req.params.id)
+  .then(article => {
+    if(article.author != req.headers.auth.id) {
+      res.send({msg: 'unauthorized'})
+    } else {
+      Article.remove({_id: req.params.id})
+      .then(() => res.send({msg: 'berhasil delete'}))
+    }
+  })
+  .catch(err => res.status(500).send({msg: 'error proses'}))
+}
+
 module.exports = {
   create,
   getAllArticles,
   getOne,
-  update
+  update,
+  deleteArticle
 }

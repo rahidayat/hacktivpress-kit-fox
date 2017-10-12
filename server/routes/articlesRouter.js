@@ -7,6 +7,7 @@ router.post('/', authHelper.checkLogin, authHelper.checkAuth, articlesController
 router.get('/', articlesController.getAllArticles)
 router.get('/:id', articlesController.getOne)
 router.put('/:id', authHelper.checkLogin, authHelper.checkAuth, articlesController.update)
+router.delete('/:id', authHelper.checkLogin, authHelper.checkAuth, articlesController.deleteArticle)
 
 
 module.exports = router
