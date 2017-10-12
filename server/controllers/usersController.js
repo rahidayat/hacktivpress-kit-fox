@@ -3,13 +3,12 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs');
 
 var signup = (req, res) => {
-  const password = req.body.password
+  let password = req.body.password
   bcrypt.genSalt(10, (errSalt, salt) => {
     bcrypt.hash(password, salt, (errHash, hash) => {
-      req.body.password = hash
       User.create({
         username: req.body.username,
-        password: req.body.password
+        password: hash
       })
       .then(() => {
         res.send({msg: 'sukses daftar'})
@@ -21,6 +20,32 @@ var signup = (req, res) => {
   })
 }
 
+var signin = (req, res) => {
+  let username = req.body.username
+  let password = req.body.password
+  if(!username || !password) {
+    res.status(403).send({msg: 'masukan username dan password'})
+  } else {
+    User.findOne({
+      username: req.body.username
+    })
+    .then(user => {
+      bcrypt.compare(password, user.password)
+      .then(compareResult => {
+        if(compareResult) {
+          let token = jwt.sign({id: user._id, username: user.username}, 'hacktivpress');
+          res.send(token)
+        } else {
+          res.status(400).send({msg: 'password salah'})
+        }
+      })
+    })
+    .catch(err => {
+      res.status(404).send({msg: 'user tidak ditemukan'})
+    })
+  }
+}
+
 let getAllUsers = (req,res) => {
   User.find({})
   .then(data => res.send(data))
@@ -30,5 +55,6 @@ let getAllUsers = (req,res) => {
 
 module.exports = {
   signup,
+  signin,
   getAllUsers
 }
