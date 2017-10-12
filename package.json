@@ -1,0 +1,23 @@
+{
+  "name": "hacktivpress-kit-fox",
+  "version": "1.0.0",
+  "description": "just simple blog app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rahidayat/hacktivpress-kit-fox.git"
+  },
+  "keywords": [
+    "blog",
+    "article"
+  ],
+  "author": "rahidayat",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rahidayat/hacktivpress-kit-fox/issues"
+  },
+  "homepage": "https://github.com/rahidayat/hacktivpress-kit-fox#readme"
+}
