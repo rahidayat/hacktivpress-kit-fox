@@ -6,7 +6,7 @@
             <!-- <Login/> -->
           </div>
           <div class="col-md-6">
-            <Register/>
+            <Login/>
           </div>
         </div>
       </div>
@@ -15,11 +15,9 @@
 
 <script>
 import Login from '@/components/Login'
-import Register from '@/components/Register'
 export default {
   name: 'HelloWorld',
   components: {
-    Register,
     Login
   },
   data () {

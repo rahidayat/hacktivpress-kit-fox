@@ -1,15 +1,21 @@
 <template lang="html">
-  <div class="jumbotron">
-    <form class="form-horizontal" @submit.prevent="createUser(formRegister)">
-      <fieldset>
-        <legend>Sign up</legend>
-        <label class="control-label" for="focusedInput">Username</label>
-          <input class="form-control" placeholder="username" type="text" v-model="formRegister.username">
-        <label class="control-label" for="focusedInput">Password</label>
-          <input class="form-control" placeholder="password" type="password" v-model="formRegister.password"> <br>
-        <button class="btn btn-info" type="submit">Register</button>
-      </fieldset>
-    </form>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="jumbotron">
+          <form class="form-horizontal" @submit.prevent="createUser(formRegister)">
+            <fieldset>
+              <legend>Sign up or <router-link :to="'/'"><span>Log in</span></router-link></legend>
+              <label class="control-label" for="focusedInput">Username</label>
+              <input class="form-control" placeholder="username" type="text" v-model="formRegister.username">
+              <label class="control-label" for="focusedInput">Password</label>
+              <input class="form-control" placeholder="password" type="password" v-model="formRegister.password"> <br>
+              <button class="btn btn-info" type="submit">Register</button>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
