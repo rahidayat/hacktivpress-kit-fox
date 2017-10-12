@@ -15,8 +15,10 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
 var user = require ('./routes/usersRouter');
+var article = require ('./routes/articlesRouter')
 
 app.use('/api', user);
+app.use('/api/articles', article);
 
 app.listen(process.env.PORT || 3000, function(){
   console.log('I am listening port 3000');
