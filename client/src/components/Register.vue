@@ -34,7 +34,7 @@ export default {
       this.$http.post('/signup', this.formRegister)
       .then(userData => {
         console.log('user data register: ', userData)
-        this.$router.push('login')
+        this.$router.push({path: '/'})
       })
       .catch(err => {
         console.log('ini error register: ', err.response.data.msg)
