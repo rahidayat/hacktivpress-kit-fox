@@ -24,9 +24,22 @@ var getOne = (req, res) => {
   .then(article => res.send(article))
   .catch(err => res.status(500).send({msg: 'error proses'}))
 }
+var update = (req, res) => {
+  Article.findById(req.params.id)
+  .then(article => {
+    if(article.author != req.headers.auth.id) {
+      res.send({msg: 'unauthorized'})
+    } else {
+      Article.update({_id: req.params.id}, req.body)
+      .then(() => res.send({msg: 'berhasil update'}))
+    }
+  })
+  .catch(err => res.status(500).send({msg: 'error proses'}))
+}
 
 module.exports = {
   create,
   getAllArticles,
-  getOne
+  getOne,
+  update
 }
